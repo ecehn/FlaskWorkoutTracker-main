@@ -1,21 +1,21 @@
 <!-- add.html -->
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Workout</title>
-</head>
-<body>
-    <h1>Add Workout</h1>
-    <form action="/workouts" method="post">
-        <label for="exercise">Exercise:</label><br>
-        <input type="text" id="exercise" name="exercise" required><br>
-        <label for="reps">Reps:</label><br>
-        <input type="number" id="reps" name="reps" required><br>
-        <label for="sets">Sets:</label><br>
-        <input type="number" id="sets" name="sets" required><br><br>
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+{% block header %}
+  <h2>{% block title %}Add Workout{% endblock title %}</h2>
+{% endblock header %}
+
+{% block content %}
+    <body>
+        <form action="/workouts" method="post">
+            <label for="exercise">Exercise:</label><br>
+            <input type="text" id="exercise" name="exercise" required><br>
+            <label for="reps">Reps:</label><br>
+            <input type="number" id="reps" name="reps" required><br>
+            <label for="sets">Sets:</label><br>
+            <input type="number" id="sets" name="sets" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+{% endblock content %}
+

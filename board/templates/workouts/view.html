@@ -1,57 +1,16 @@
+<!-- view.html -->
+{% extends 'base.html' %}
 
-To create a method to view workouts after inserting them, you'll need to define a new route in your Flask application. This route will retrieve the workout data from the database and render it in a view page.
+{% block header %}
+  <h2>{% block title %}View Workout{% endblock title %}</h2>
+{% endblock header %}
 
-Here's how you can implement it:
-
-Define a new route in your workouts.py blueprint to handle requests for viewing workouts.
-Inside the route function, retrieve the workout data from the database using your database logic.
-Pass the retrieved workout data to a template for rendering.
-Create an HTML template to display the workout data in a user-friendly format.
-Here's an example implementation:
-
-python
-Copy code
-# In workouts.py
-
-from flask import Blueprint, render_template
-
-# Assume you have a function to retrieve all workouts from the database
-# Replace `get_all_workouts` with your actual database logic
-from database import get_all_workouts
-
-bp = Blueprint('workouts', __name__)
-
-@bp.route('/workouts', methods=['GET'])
-def view_workouts():
-    # Retrieve all workouts from the database
-    workouts = get_all_workouts()
-
-    # Render the template with the workout data
-    return render_template('view_workouts.html', workouts=workouts)
-In this example:
-
-We define a new route /workouts to handle GET requests for viewing workouts.
-Inside the route function, we retrieve all workouts from the database using the get_all_workouts function (replace this with your actual database logic).
-We pass the retrieved workout data to a template called view_workouts.html using the render_template function.
-Now, you need to create an HTML template (view_workouts.html) to display the workout data. Here's a basic example:
-
-html
-Copy code
-<!-- view_workouts.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Workouts</title>
-</head>
-<body>
-    <h1>Workouts</h1>
-    <ul>
-        {% for workout in workouts %}
-            <li>{{ workout.exercise }} - Reps: {{ workout.reps }}, Sets: {{ workout.sets }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% block content %}
+    <body>
+        <form action="/view" method="post">
+            <label for="workout_id">Workout ID:</label><br>
+            <input type="number" id="workout_id" name="workout_id" required><br><br>
+            <input type="submit" value="View Workout">
+        </form>
+    </body>
+{% endblock content %}

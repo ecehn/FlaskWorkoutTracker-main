@@ -1,0 +1,13 @@
+<!-- view.html -->
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2>{% block title %}View Workout{% endblock title %}</h2>
+{% endblock header %}
+
+{% block content %}
+    <body>
+        <h1>Workout Details</h1>
+        <pre>{{ workout | tojson(indent=0) }}</pre>
+    </body>
+{% endblock content %}
